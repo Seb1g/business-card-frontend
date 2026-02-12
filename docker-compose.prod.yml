@@ -1,0 +1,7 @@
+services:
+  my-card:
+    build: .
+    container_name: business-card
+    restart: always
+    ports:
+      - "8085:80"
