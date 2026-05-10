@@ -25,4 +25,4 @@ jobs:
             - name: Health Check
               run: |
                   sleep 5
-                  curl -f http://localhost:8085 || exit 1
+                  docker inspect -f '{{.State.Running}}' business-card | grep true

@@ -1,7 +1,17 @@
 services:
-  my-card:
+  business-card:
     build: .
     container_name: business-card
     restart: always
-    ports:
-      - "8085:80"
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.business-card.rule=Host(`${MY_DOMAIN}`)"
+      - "traefik.http.routers.business-card.entrypoints=websecure"
+      - "traefik.http.routers.business-card.tls.certresolver=myresolver"
+      - "traefik.http.services.business-card.loadbalancer.server.port=8080"
+
+networks:
+  traefik-public:
+    external: true
