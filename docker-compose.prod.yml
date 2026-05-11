@@ -9,7 +9,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.business-card.rule=Host(`${MY_DOMAIN}`)"
       - "traefik.http.routers.business-card.entrypoints=websecure"
-      - "traefik.http.routers.business-card.tls.certresolver=myresolver"
       - "traefik.http.services.business-card.loadbalancer.server.port=80"
 
 networks:
