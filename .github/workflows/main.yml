@@ -17,6 +17,8 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Deploy Container
+              env:
+                    MY_DOMAIN: ${{ secrets.MY_DOMAIN }}
               run: |
                   docker compose -f docker-compose.prod.yml up -d --build --remove-orphans
 
