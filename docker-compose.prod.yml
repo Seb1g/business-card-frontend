@@ -11,8 +11,6 @@ services:
       - "traefik.http.routers.business-card.entrypoints=websecure"
       - "traefik.http.routers.business-card.tls.certresolver=myresolver"
       - "traefik.http.services.business-card.loadbalancer.server.port=80"
-    env_file:
-      - .env
 
 networks:
   traefik-public:
