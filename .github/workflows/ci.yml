@@ -13,11 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Lowercase Repository Name
+        run: |
+          echo "REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Create Docker Auth Config
         run: |
           mkdir -p ~/.docker
-          echo '
-          {"auths": {"ghcr.io":{"auth":"'$(echo -n "${{ github.actor }}:${{ secrets.GHCR_TOKEN }}" | base64)'"}}}' > ~/.docker/config.json
+          echo '{"auths": {"ghcr.io":{"auth":"'$(echo -n "${{ github.actor }}:${{ secrets.GHCR_TOKEN }}" | base64)'"}}}' > ~/.docker/config.json
 
       - name: Build and Push Image via Kaniko
         run: |
