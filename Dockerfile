@@ -4,12 +4,10 @@ WORKDIR /app
 RUN apk add --no-cache libc6-compat
 
 COPY package*.json ./
-
-RUN npm ci || npm install
+RUN npm ci
 
 COPY . .
-
-RUN ls -la node_modules/.bin && npm run build
+RUN npm run build
 
 FROM joseluisq/static-web-server:2
 WORKDIR /public
